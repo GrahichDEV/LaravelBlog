@@ -7,14 +7,23 @@ use Illuminate\Http\Request;
 class BlogsController extends Controller
 {
     static function index() {
-        $blogs = Blog::get();
+        $blogs = Blog::orderBy('id', 'desc')
+            ->get();
+
         return view('blogs', ["blogs" => $blogs]);
     }
 
-    function new() {
+    function store(Request $request) {
+        // Validation
+        $request->validate([
+            'title' => 'required|max:255',
+            'text' => 'required|min:20',
+        ]);
+
+        // Store
         $blog = new Blog();
-        $blog->title = 'Novi Naslov';
-        $blog->blogText = 'Neki text lorem ipsum ovo ono tamo vamo ljevo desno hehe.';
+        $blog->title = $request->title;
+        $blog->blogText = $request->text;
         $blog->save();
 
         return redirect()->back();
@@ -24,7 +33,7 @@ class BlogsController extends Controller
         // Delete
         Blog::find($request->id)
             ->delete();
-        
+
         // Redirect back
         return redirect()->back();
     }

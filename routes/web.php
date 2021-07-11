@@ -18,7 +18,7 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/blogs', [BlogsController::class, 'index'])->name('blogs');
-Route::get('/newBlog', [BlogsController::class, 'new'])->name('newBlog');
+Route::post('/blogs', [BlogsController::class, 'store'])->name('newBlog');
 Route::post('/delBlog', [BlogsController::class, 'del'])->name('delBlog');
 
 Route::get('/', function () {
