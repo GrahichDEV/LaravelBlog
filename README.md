@@ -1,4 +1,4 @@
-## About Laravel
+## Simple Blog System
 
 Working on Simple Bloging System
 
