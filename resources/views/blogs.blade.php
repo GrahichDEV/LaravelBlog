@@ -7,7 +7,20 @@
         <!-- <a href='{{ route('newBlog') }}' class="rounded py-1 px-2 bg-blue-600 font-bold text-medium text-white hover:bg-gray-600" onclick="showNewBlogForm()">New</a>
         -->
         <div>
-            <h3 class="inline-block rounded text-sm px-3 py-2 text-white bg-blue-600 font-medium">{{ Auth::user()->blogscount}} Blogs</h3>
+            <h3 class="inline-block rounded text-sm px-3 py-2 text-white bg-blue-600 font-medium">
+                @if (Auth::user()->blogscount == 1)
+                    {{Auth::user()->blogscount }} Blog
+                @else
+                    {{Auth::user()->blogscount }} Blogs
+                @endif
+            </h3>
+            <h3 class="inline-block rounded text-sm px-3 py-2 text-white bg-blue-600 font-medium">
+                @if (Auth::user()->followers_count == 1)
+                    {{Auth::user()->followers_count }} Follower
+                @else
+                    {{Auth::user()->followers_count }} Followers
+                @endif
+            </h3>
             <a href='#' class="inline-block rounded text-sm px-3 py-2 text-white bg-blue-600 font-medium" onclick="showNewBlogForm()">New</a>
         </div>
     </div>
