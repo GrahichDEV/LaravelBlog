@@ -9,20 +9,28 @@
 </head>
 <body>
     <nav class="bg-blue-500">
-        <ul class="flex flex-row">
-            <li class="m-3 text-white font-medium"><a href='{{ route('home') }}'>Home</a></li>
+        <div class="flex justify-between">
+            <ul class="flex flex-row py-3">
+                <li class="rounded mx-1 text-white font-medium px-2 py-1 @if (Request::route()->getName() == 'home') bg-blue-700 @endif hover:bg-blue-700"><a href='{{ route('home') }}'>Home</a></li>
+                @guest
+                    <li class="rounded mx-1 text-white font-medium px-2 py-1 @if (Request::route()->getName() == 'login') bg-blue-700 @endif hover:bg-blue-700"><a href='{{ route('login') }}'>Login</a></li>
+                    <li class="rounded mx-1 text-white font-medium px-2 py-1 @if (Request::route()->getName() == 'register') bg-blue-700 @endif hover:bg-blue-700"><a href='{{ route('register') }}'>Register</a></li>
+                @endguest
+                @auth
+                <li class="rounded mx-1 text-white font-medium px-2 py-1 @if (Request::route()->getName() == 'blogs') bg-blue-700 @endif hover:bg-blue-700"><a href='{{ route('blogs') }}'>Blogs</a></li>
+                <li class="rounded mx-1 text-white font-medium px-2 py-1 @if (Request::route()->getName() == 'userList') bg-blue-700 @endif hover:bg-blue-700"><a href='{{ route('userList') }}'>User List</a></li>
+                @endauth
+            </ul>
             @auth
-            <li class="m-3 text-white font-medium"><a href='{{ route('blogs') }}'>Blogs</a></li>
+            <ul class="flex flex-row py-3">
+                <li class="rounded mx-1 text-white font-medium px-2 py-1 @if (Request::route()->getName() == 'profile') bg-blue-700 @endif hover:bg-blue-700"><a href='{{ route('profile', ['username' => Auth::user()->username]) }}'>{{ Auth::user()->username }}</a></li>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button class="m-3 text-white font-medium" type="submit">Logout</button>
+                    <button class="mx-1 text-white font-medium px-2 py-1" type="submit">Logout</button>
                 </form>
+            </ul>
             @endauth
-            @guest
-                <li class="m-3 text-white font-medium"><a href='{{ route('login') }}'>Login</a></li>
-                <li class="m-3 text-white font-medium"><a href='{{ route('register') }}'>Register</a></li>
-            @endguest
-        </ul>
+        </div>
     </nav>
     <div class="my-10 mx-2">
         @yield('content')

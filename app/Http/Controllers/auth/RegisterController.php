@@ -23,6 +23,8 @@ class RegisterController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'blogscount' => 0,
+            'followers_count' => 0,
         ]);
 
         auth()->attempt($request->only('email', 'password'));

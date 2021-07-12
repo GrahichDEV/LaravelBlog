@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class Follower extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'blogText',
-        'authorID'
+        'userID',
+        'followedID',
     ];
 }
