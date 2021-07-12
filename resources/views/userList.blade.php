@@ -6,11 +6,19 @@
 
     <ul>
     @foreach ($users as $user)
-        <li>
-            <a href='{{ route('profile', ['username' => $user->username]) }}'
-               class="block border bg-white border-gray-200 rounded p-2 mb-1 hover:bg-blue-500 hover:text-white">
-                {{ $user->username }}
-            </a>
+        <li class="flex flex-col">
+            <div class="flex flex-row justify-between rounded mb-3 bg-white border border-gray-200 hover:bg-blue-500 hover:text-white">
+                <a href='{{ route('profile', ['username' => $user->username]) }}'
+                    class="w-7/12 border-gray-200 rounded font-medium p-2">
+                     {{ $user->username }}
+                 </a>
+                 <div class="text-center w-2/12 text-sm font-medium border-gray-200 rounded p-3">
+                     {{ $user->blogscount }} Blogs
+                 </div>
+                 <div class="text-center w-3/12 text-sm font-medium block border-gray-200 rounded p-3">
+                     {{ $user->followers_count }} Followers
+                 </div>
+            </div>
         </li>
     @endforeach
     </ul>
