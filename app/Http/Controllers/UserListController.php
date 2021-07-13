@@ -9,7 +9,7 @@ class UserListController extends Controller
 {
     function index() {
         // $users = DB::table('users')->get()->;
-        $users = DB::select('select * from users');
+        $users = DB::select('select * from users ORDER BY followers_count DESC');
 
         return view('userList', ['users' => $users]);
     }
